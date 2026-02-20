@@ -1,4 +1,9 @@
-import main.omnihome.singleton.CloudConnection;
+import main.omnihome.connection.CloudConnection;
+import main.omnihome.devices.SmartLight;
+import main.omnihome.devices.SmartLock;
+import main.omnihome.devices.SmartThermostat;
+import main.omnihome.devices.factory.DeviceFactory;
+import main.omnihome.devices.factory.LuxuryFactory;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,5 +18,17 @@ public class Main {
         }
 
         connection1.connect();
+
+
+        System.out.println("Initializing Luxury Home...");
+        DeviceFactory factory = new LuxuryFactory();
+
+        SmartLight kitchenroomLight = factory.createLight();
+        SmartLock frontDoorLock = factory.createLock();
+        SmartThermostat basicThermostat = factory.createThermostat();
+
+        kitchenroomLight.turnOn();
+        frontDoorLock.lock();
+        basicThermostat.setTemperature(24.0);
     }
 }

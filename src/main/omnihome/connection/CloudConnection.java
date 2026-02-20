@@ -1,4 +1,4 @@
-package main.omnihome.singleton;
+package main.omnihome.connection;
 
 public class CloudConnection {
    private String apiKey, serverUrl;
