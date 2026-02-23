@@ -4,6 +4,8 @@ import main.omnihome.devices.SmartLock;
 import main.omnihome.devices.SmartThermostat;
 import main.omnihome.devices.factory.DeviceFactory;
 import main.omnihome.devices.factory.LuxuryFactory;
+import main.omnihome.legacy.GlorbAdapter;
+import main.omnihome.legacy.GlorbThermostat;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,5 +32,14 @@ public class Main {
         kitchenroomLight.turnOn();
         frontDoorLock.lock();
         basicThermostat.setTemperature(24.0);
+
+        System.out.println("After analyze Glorb Legacy Thermostat was found");
+        GlorbThermostat ther = new GlorbThermostat();
+
+        System.out.println("Plugging it into the Smart Hub by using GlorbAdapter...");
+        SmartThermostat adaptedThermostat = new GlorbAdapter(ther);
+
+        System.out.println("Command setTemperature(25.0°C) is activating");
+        adaptedThermostat.setTemperature(25.0);
     }
 }
