@@ -64,7 +64,7 @@ You should see messages about:
 - created routine details
 - clone test success (original config stays safe)
 
-DEMO OUTPUT:
+## DEMO OUTPUT:
 ```
 ------- Smart Hub OmniHome initialization starts ------
 CloudConnection initialized.
