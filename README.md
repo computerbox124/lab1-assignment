@@ -1,4 +1,4 @@
-# OmniHome Smart Hub - Lab 2
+# OmniHome Smart Hub - Lab assignment
 
 This is a simple Java lab project.
 The goal is to show design patterns using a smart home example.
@@ -31,7 +31,7 @@ Adapter pattern diagram:
 ## Folder structure (main parts)
 
 ```text
-lab2-assignment/
+lab1-assignment/
   src/
     Main.java
     main/omnihome/
@@ -44,7 +44,7 @@ lab2-assignment/
 
 ## How to run
 
-Run these commands from `lab2-assignment` folder:
+Run these commands from `lab1-assignment` folder:
 
 ```bash
 mkdir -p out
