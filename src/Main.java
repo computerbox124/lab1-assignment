@@ -1,3 +1,6 @@
+import main.omnihome.automation.AutomationRoutine;
+import main.omnihome.automation.RoutineBuilder;
+import main.omnihome.config.Configuration;
 import main.omnihome.connection.CloudConnection;
 import main.omnihome.devices.SmartLight;
 import main.omnihome.devices.SmartLock;
@@ -41,5 +44,36 @@ public class Main {
 
         System.out.println("Command setTemperature(25.0°C) is activating");
         adaptedThermostat.setTemperature(25.0);
+
+        AutomationRoutine vacationMode = new RoutineBuilder()
+                .withName("Vacation Mode")
+                .addDevice(kitchenroomLight)
+                .addDevice(frontDoorLock)
+                .addDevice(basicThermostat)
+                .addDevice(adaptedThermostat)
+                .atTime("08:30 AM")
+                .toggleNotification(true)
+                .build();
+
+        System.out.println("Successfully built routine:");
+        System.out.println(vacationMode);
+
+        Configuration livingRoomConfig = new Configuration("172.30.20.250", 8000, "v0.0.1");
+        System.out.println("Living room's original config is: " + livingRoomConfig);
+
+        Configuration guestRoomConfig = livingRoomConfig.clone();
+        System.out.println("Guest room's original config is: " + guestRoomConfig);
+
+        System.out.println("Changing Guest Room IP to 172.30.20.249...");
+        guestRoomConfig.setIpAddress("172.30.20.249");
+
+        System.out.println("After Change - Original Config: " + livingRoomConfig.getIpAddress());
+        System.out.println("After Change - Cloned Config:   " + guestRoomConfig.getIpAddress());
+
+        if (!livingRoomConfig.getIpAddress().equals(guestRoomConfig.getIpAddress())) {
+            System.out.println("Changing duplicate did NOT affect the original! - SUCCESS!!!!");
+        } else {
+            System.out.println("Changing duplicate affected the original! - FAILED!!!!");
+        }
     }
 }

@@ -30,3 +30,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Demo bytecode (tracked on purpose) ###
+*.class
+!demo-classes/
+!demo-classes/**/*.class
